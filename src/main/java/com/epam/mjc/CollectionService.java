@@ -1,27 +1,36 @@
 package com.epam.mjc;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.stream.Collectors;
 
-public class CollectionService {
+public class CollectionService
+{
 
-    public List<Integer> filterEvenNumbers(List<Integer> list) {
-        throw new UnsupportedOperationException("You should implement this method.");
+    public List<Integer> filterEvenNumbers(List<Integer> list)
+    {
+        return list.stream().filter(element -> element % 2 == 0).collect(Collectors.toList());
     }
 
-    public List<String> toUpperCaseCollection(List<String> list) {
-        throw new UnsupportedOperationException("You should implement this method.");
+    public List<String> toUpperCaseCollection(List<String> list)
+    {
+        return list.stream().map(element -> element.toUpperCase()).collect(Collectors.toList());
     }
 
-    public Optional<Integer> findMax(List<Integer> list) {
-        throw new UnsupportedOperationException("You should implement this method.");
+    public Optional<Integer> findMax(List<Integer> list)
+    {
+        return list.stream().max(Integer::compareTo);
     }
 
-    public Optional<Integer> findMin(List<List<Integer>> list) {
-        throw new UnsupportedOperationException("You should implement this method.");
+    public Optional<Integer> findMin(List<List<Integer>> list)
+    {
+        return list.stream().flatMap(l -> l.stream()).min(Integer::compareTo);
     }
 
-    public Integer sum(List<Integer> list) {
-        throw new UnsupportedOperationException("You should implement this method.");
+    public Integer sum(List<Integer> list)
+    {
+        return list.stream().reduce((a, b) -> a + b).get();
     }
 }
